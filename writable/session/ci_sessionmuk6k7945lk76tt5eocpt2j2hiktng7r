@@ -1,0 +1,1 @@
+__ci_last_regenerate|i:1733930042;_ci_previous_url|s:37:"http://localhost:8080/index.php/login";isLoggedIn|b:1;user|a:5:{s:2:"id";s:1:"2";s:5:"email";s:21:"se_manoel@hotmail.com";s:8:"password";s:60:"$2y$10$2UdpEHZUFU4yeV0d9rgFyuGKvDL2at00jEdAP5lu8RoUO/rHW/wd2";s:10:"created_at";s:19:"0000-00-00 00:00:00";s:10:"updated_at";s:19:"0000-00-00 00:00:00";}
