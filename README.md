@@ -30,10 +30,15 @@ app.baseURL = 'http://localhost:8080'
 
 # DATABASE
 database.default.hostname = localhost
+
 database.default.database = cms_db
+
 database.default.username = root
+
 database.default.password = 
+
 database.default.DBDriver = MySQLi
+
 Gere a chave da aplicação:
 vbnet
 
@@ -52,17 +57,30 @@ O CMS estará disponível em http://localhost:8080.
 
 Estrutura do Projeto
 app/: Contém os controladores, modelos e visualizações do CMS.
+
 cms/: Pasta do repositório Git, contém os arquivos do CMS.
+
 composer.json: Arquivo de configuração do Composer, que define as dependências do projeto.
+
 composer.lock: Arquivo gerado automaticamente pelo Composer para garantir que as versões das dependências sejam consistentes.
+
 env: Arquivo de variáveis de ambiente que contém configurações sensíveis, como credenciais de banco de dados.
+
 phpunit.xml.dist: Arquivo de configuração para testes unitários.
+
 public/: Pasta pública, onde ficam os arquivos acessíveis publicamente, como imagens, scripts e estilos.
+
 README.md: Documento que contém a descrição do projeto e instruções de configuração.
+
 spark: Ferramenta de linha de comando do CodeIgniter para gerenciar o projeto.
+
 system/: Contém o código do framework CodeIgniter.
+
 tests/: Pasta para os testes unitários do projeto.
+
 vendor/: Pasta gerada pelo Composer que contém as dependências do projeto.
+
 writable/: Pasta onde o CodeIgniter escreve arquivos, como logs e caches.
+
 Contribuições
 
