@@ -1,5 +1,5 @@
 <?php
-namespace App\Controllers;
+
 namespace App\Controllers;
 
 use CodeIgniter\Controller;
@@ -12,11 +12,12 @@ class Dashboard extends Controller
         $model = new ClientModel();
 
         // Coordenadas da Cheil Brasil
-        $cheil_lat = -23.620007575935897;
-        $cheil_long = -46.701493424123456;
+        $cheil_lat = -23.561684;
+        $cheil_long = -46.625378;
 
-        // Consultando clientes e suas coordenadas, sem agrupar pelo nome
-        $clients = $model->select('nome, latitude, longitude')
+        // Consultando clientes e suas coordenadas
+        $clients = $model->select('nome, latitude, longitude, COUNT(*) as total')
+                         ->groupBy('nome')
                          ->findAll();
 
         $segments = [];
@@ -41,28 +42,35 @@ class Dashboard extends Controller
             return $R * $c; // Retorna a distância em km
         }
 
-        // Preenche os arrays com dados
         foreach ($clients as $client) {
-            // Converte latitude e longitude para float caso sejam strings
-            $latitude = (float) $client['latitude'];
-            $longitude = (float) $client['longitude'];
-
             $segments[] = $client['nome'];
 
-            // Calcula a distância de cada cliente para a Cheil Brasil
-            $distance = haversine($cheil_lat, $cheil_long, $latitude, $longitude);
-            $distances[] = $distance;
+            // Converte latitude e longitude para float
+            $latitude = (float)$client['latitude'];
+            $longitude = (float)$client['longitude'];
 
-            // Ajusta a contagem com base na distância
-            $adjustedCount = 1 * (1 + $distance / 100); // Ajusta como quiser
-            $counts[] = round($adjustedCount, 2); // Arredondando para 2 casas decimais
+            // Verifica coordenadas inválidas
+            if ($latitude < -90 || $latitude > 90 || $longitude < -180 || $longitude > 180) {
+                error_log("Coordenadas inválidas para {$client['nome']}: Latitude $latitude, Longitude $longitude");
+                continue;
+            }
+
+            // Calcula a distância para a Cheil Brasil
+            $distance = haversine($cheil_lat, $cheil_long, $latitude, $longitude);
+            $distances[] = round($distance, 2);
+
+            $counts[] = $client['total'];
         }
 
-        // Passa os dados para a view
+        // Debug das saídas
+        error_log("Segments: " . json_encode($segments));
+        error_log("Counts: " . json_encode($counts));
+        error_log("Distances: " . json_encode($distances));
+
         return view('dashboard/index', [
             'segments' => $segments,
             'counts' => $counts,
-            'distances' => $distances // Passando as distâncias calculadas
+            'distances' => $distances,
         ]);
     }
 }

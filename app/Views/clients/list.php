@@ -15,6 +15,9 @@
                 <th class="px-4 py-2 text-left bg-blue-500 text-white">Email</th>
                 <th class="px-4 py-2 text-left bg-blue-500 text-white">Telefone</th>
                 <th class="px-4 py-2 text-left bg-blue-500 text-white">Segmento</th>
+                <th class="px-4 py-2 text-left bg-blue-500 text-white">Longitude</th>
+                <th class="px-4 py-2 text-left bg-blue-500 text-white">Latitude</th>
+                <th class="px-4 py-2 text-left bg-blue-500 text-white">CEP</th> <!-- Nova coluna CEP -->
                 <th class="px-4 py-2 text-left bg-blue-500 text-white">Ações</th>
             </tr>
         </thead>
@@ -25,6 +28,9 @@
                     <td class="px-4 py-2"><?= esc($client['email']); ?></td>
                     <td class="px-4 py-2"><?= esc($client['telefone']); ?></td>
                     <td class="px-4 py-2"><?= esc($client['segmento']); ?></td>
+                    <td class="px-4 py-2"><?= esc($client['longitude']); ?></td>
+                    <td class="px-4 py-2"><?= esc($client['latitude']); ?></td>
+                    <td class="px-4 py-2"><?= esc($client['cep']); ?></td> <!-- Exibição do CEP -->
                     <td class="px-4 py-2 flex space-x-2">
                         <a href="<?= base_url('/clients/edit/' . $client['id']); ?>" class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-400 text-sm">Editar</a>
                         <a href="<?= base_url('/clients/delete/' . $client['id']); ?>" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-400 text-sm" onclick="return confirm('Tem certeza que deseja excluir este cliente?');">Excluir</a>
