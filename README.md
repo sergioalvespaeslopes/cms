@@ -1,5 +1,5 @@
 CMS Project
-Este projeto é um Sistema de Gestão de Conteúdo (CMS) desenvolvido utilizando CodeIgniter 4. O sistema oferece funcionalidades de autenticação de usuários, gerenciamento de dados de clientes e um painel gráfico com gráficos de barras. O banco de dados utilizado é MySQL ou MariaDB, com práticas recomendadas para código limpo, documentação e controle de versão.
+Este projeto é um Sistema de Gestão de Conteúdo (CMS) desenvolvido utilizando CodeIgniter 4. O sistema oferece funcionalidades de autenticação de usuários, gerenciamento de dados de clientes e um painel gráfico com gráficos de barras, que mostra a geolocalização da pessoa e compara com a distância determinada. O banco de dados utilizado é MySQL ou MariaDB, com práticas recomendadas para código limpo, documentação e controle de versão.
 
 Pré-requisitos
 Antes de rodar o projeto, você precisa ter os seguintes softwares instalados:
