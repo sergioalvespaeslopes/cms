@@ -1,8 +1,6 @@
 <?= $this->extend('layouts/base'); ?>
-
 <?= $this->section('css'); ?>
 <?= $this->endSection(); ?>
-
 <?= $this->section('content'); ?>
 
 <div class="container mx-auto p-6 bg-white shadow-lg rounded-lg max-w-lg">
@@ -20,16 +18,14 @@
         <label for="segmento" class="block text-lg text-gray-700 mb-2">Segmento:</label>
         <input type="text" name="segmento" id="segmento" required class="w-full p-3 border border-gray-300 rounded-lg mb-4 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
 
-        <!-- Campo de CEP -->
         <label for="cep" class="block text-lg text-gray-700 mb-2">CEP:</label>
         <input type="text" name="cep" id="cep" required placeholder="XXXXX-XXX" class="w-full p-3 border border-gray-300 rounded-lg mb-4 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500" title="CEP no formato XXXXX-XXX">
 
-        <!-- Campos de Latitude e Longitude -->
         <label for="latitude" class="block text-lg text-gray-700 mb-2">Latitude:</label>
-        <input type="text" name="latitude" id="latitude" required class="w-full p-3 border border-gray-300 rounded-lg mb-4 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500" >
+        <input type="text" name="latitude" id="latitude" required class="w-full p-3 border border-gray-300 rounded-lg mb-4 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
 
         <label for="longitude" class="block text-lg text-gray-700 mb-2">Longitude:</label>
-        <input type="text" name="longitude" id="longitude" required class="w-full p-3 border border-gray-300 rounded-lg mb-6 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500" >
+        <input type="text" name="longitude" id="longitude" required class="w-full p-3 border border-gray-300 rounded-lg mb-6 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
 
         <button type="submit" class="w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">Criar Cliente</button>
     </form>
@@ -39,68 +35,63 @@
     </div>
 </div>
 
-<!-- Incluindo a biblioteca IMask.js -->
 <script src="https://unpkg.com/imask"></script>
-
 <script>
-    // Aplica a máscara de CEP no campo de CEP
-    var cepElement = document.getElementById('cep');
-    var cepMask = IMask(cepElement, {
-        mask: '00000-000' // Máscara para o formato de CEP XXXXX-XXX
-    });
+const cepMask = IMask(document.getElementById('cep'), {
+    mask: '00000-000' 
+});
 
-    // Função para buscar latitude e longitude através do CEP
-    async function fetchGeolocation(cep) {
-        try {
-            let response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
-            let data = await response.json();
+async function fetchCEPData(cep) {
+    const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+    const data = await response.json();
+    return data;
+}
 
-            if (data.logradouro && data.bairro && data.localidade && data.uf) {
-                // Monta o endereço completo
-                const address = `${data.logradouro}, ${data.bairro}, ${data.localidade}, ${data.uf}`;
+async function fetchGeolocation(address) {
+    const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&q=${encodeURIComponent(address)}`);
+    const data = await response.json();
+    return data[0];
+}
 
-                // Consulta a API de Geocodificação do OpenStreetMap (Nominatim)
-                let geoResponse = await fetch(`https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&q=${encodeURIComponent(address)}`);
-                let geoData = await geoResponse.json();
-
-                if (geoData && geoData[0]) {
-                    const location = geoData[0];
-                    document.getElementById('latitude').value = location.lat;
-                    document.getElementById('longitude').value = location.lon;
-                } else {
-                    alert('Não foi possível obter a geolocalização para este endereço.');
-                }
+async function updateLocationFromCEP(cep) {
+    try {
+        const cepData = await fetchCEPData(cep);
+        if (cepData.logradouro && cepData.bairro && cepData.localidade && cepData.uf) {
+            const address = `${cepData.logradouro}, ${cepData.bairro}, ${cepData.localidade}, ${cepData.uf}`;
+            const geoData = await fetchGeolocation(address);
+            if (geoData) {
+                document.getElementById('latitude').value = geoData.lat;
+                document.getElementById('longitude').value = geoData.lon;
             } else {
-                alert('CEP não encontrado.');
+                alert('Não foi possível obter a geolocalização para este endereço.');
             }
-        } catch (error) {
-            console.error('Erro ao buscar geolocalização:', error);
+        } else {
+            alert('CEP não encontrado.');
         }
+    } catch (error) {
+        console.error('Erro ao buscar geolocalização:', error);
     }
+}
 
-    // Quando o campo CEP perder o foco (evento blur)
-    cepElement.addEventListener('blur', function() {
-        var cep = cepElement.value.replace('-', ''); // Remove o hífen
-        if (cep.length === 8) { // Verifica se o CEP tem 8 caracteres
-            fetchGeolocation(cep);
-        }
-    });
+document.getElementById('cep').addEventListener('blur', function() {
+    const cep = this.value.replace('-', '');
+    if (cep.length === 8) {
+        updateLocationFromCEP(cep);
+    }
+});
 
-    // Remover o hífen antes de enviar o formulário
-    document.getElementById('createClientForm').addEventListener('submit', function(e) {
-        var cep = document.getElementById('cep').value;
-        document.getElementById('cep').value = cep.replace(/-/g, ''); // Remove o hífen
+document.getElementById('createClientForm').addEventListener('submit', function(e) {
+    const cep = document.getElementById('cep').value.replace(/-/g, '');
+    document.getElementById('cep').value = cep;
 
-        // Validação para garantir que a latitude e longitude estão preenchidas
-        var latitude = document.getElementById('latitude').value;
-        var longitude = document.getElementById('longitude').value;
-  
-        if (!latitude || !longitude) {
-            e.preventDefault(); // Impede o envio do formulário
-            alert('Por favor, preencha as coordenadas de latitude e longitude.');
-        }
-    });
+    const latitude = document.getElementById('latitude').value;
+    const longitude = document.getElementById('longitude').value;
+
+    if (!latitude || !longitude) {
+        e.preventDefault();
+        alert('Por favor, preencha as coordenadas de latitude e longitude.');
+    }
+});
 </script>
-
 
 <?= $this->endSection(); ?>

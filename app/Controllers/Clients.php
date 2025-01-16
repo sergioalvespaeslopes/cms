@@ -4,92 +4,70 @@ namespace App\Controllers;
 
 use CodeIgniter\Controller;
 use App\Models\ClientModel;
-use App\Services\CepService;
+use App\Services\GeolocationService;
+use App\Services\ClientValidationService;
 
 class Clients extends Controller {
+
+    protected $clientModel;
+    protected $geolocationService;
+    protected $clientValidationService;
 
     public function __construct()
     {
         $this->clientModel = new ClientModel();
-        $this->cepService = new CepService(); // Instanciando o serviço de CEP
+        $this->geolocationService = new GeolocationService();
+        $this->clientValidationService = new ClientValidationService();
     }
 
-    public function index() {
+    public function index()
+    {
         $clients = $this->clientModel->findAll();
         return view('clients/list', ['clients' => $clients]);
     }
 
-    public function create() {
+    public function create()
+    {
         return view('clients/create');
     }
 
-    // Método para armazenar cliente
-    public function store() {
-        // Validação dos campos
-        $validation = \Config\Services::validation();
-        $validation->setRules([
-            'nome' => 'required',
-            'email' => 'required|valid_email',
-            'telefone' => 'required',
-            'segmento' => 'required',
-            'cep' => 'required',
-            'latitude' => 'required|decimal',
-            'longitude' => 'required|decimal'
-        ]);
+    public function store()
+    {
+        $validation = $this->clientValidationService->validate($this->request);
 
-        if (!$validation->withRequest($this->request)->run()) {
-            // Se a validação falhar, retorna com erros
-            return redirect()->back()->withInput()->with('errors', $validation->getErrors());
+        if (!$validation['valid']) {
+            return redirect()->back()->withInput()->with('errors', $validation['errors']);
         }
 
-        // Captura os dados do formulário
         $data = [
             'nome' => $this->request->getPost('nome'),
             'email' => $this->request->getPost('email'),
             'telefone' => $this->request->getPost('telefone'),
             'segmento' => $this->request->getPost('segmento'),
-            'cep' => str_replace('-', '', $this->request->getPost('cep')), // Remover hífen do CEP
-            'latitude' => (float) $this->request->getPost('latitude'), // Garantir que a latitude seja um float
-            'longitude' => (float) $this->request->getPost('longitude'), // Garantir que a longitude seja um float
+            'cep' => str_replace('-', '', $this->request->getPost('cep')),
+            'latitude' => (float) $this->request->getPost('latitude'),
+            'longitude' => (float) $this->request->getPost('longitude'),
         ];
 
-        // Carregar o modelo e salvar no banco
         $this->clientModel->insert($data);
 
-        // Redirecionar ou mostrar sucesso
         return redirect()->to('/clients')->with('success', 'Cliente criado com sucesso!');
     }
 
-    // Método para editar cliente
-    public function edit($id) {
+    public function edit($id)
+    {
         $client = $this->clientModel->find($id);
-        
-        // Remover o hífen do 'cep' no cliente editado, se necessário
         $client['cep'] = str_replace('-', '', $client['cep']);
 
         return view('clients/edit', ['client' => $client]);
     }
 
-    // Método para atualizar cliente
     public function update($id)
     {
-        // Recebe o CEP do formulário
-        $cep = str_replace('-', '', $this->request->getPost('cep')); // Remover hífen do CEP
+        $validation = $this->clientValidationService->validate($this->request);
 
-        // Consultar a API do ViaCEP para obter a latitude e longitude
-        $geolocation = $this->cepService->getGeolocationByCep($cep);
-
-        // Se a geolocalização for encontrada, preenche latitude e longitude
-        $latitude = $geolocation['latitude'] ?? null;
-        $longitude = $geolocation['longitude'] ?? null;
-
-        // Garantir que latitude e longitude tenham a precisão correta
-        if ($latitude !== null) {
-            $latitude = (float) $latitude; // Garantir que seja um número float
-        }
-
-        if ($longitude !== null) {
-            $longitude = (float) $longitude; // Garantir que seja um número float
+        if (!$validation['valid']) {
+            return redirect()->back()->withInput()->with('errors', $validation['errors']);
         }
 
         $data = [
@@ -97,19 +75,26 @@ class Clients extends Controller {
             'email' => $this->request->getPost('email'),
             'telefone' => $this->request->getPost('telefone'),
             'segmento' => $this->request->getPost('segmento'),
-            'cep' => $cep,  // Atualizando o campo 'cep' sem hífen
-            'latitude' => $latitude,
-            'longitude' => $longitude,
+            'cep' => str_replace('-', '', $this->request->getPost('cep')),
+            'latitude' => (float) $this->request->getPost('latitude'),
+            'longitude' => (float) $this->request->getPost('longitude'),
             'updated_at' => date('Y-m-d H:i:s'),
         ];
 
         $this->clientModel->update($id, $data);
-        return redirect()->to('/clients');
+
+        return redirect()->to('/clients')->with('success', 'Cliente atualizado com sucesso!');
     }
 
-    // Método para deletar cliente
-    public function delete($id) {
+    public function delete($id)
+    {
         $this->clientModel->delete($id);
-        return redirect()->to('/clients');
+        return redirect()->to('/clients')->with('success', 'Cliente excluído com sucesso!');
+    }
+
+    public function restore($id)
+    {
+        $this->clientModel->restore($id);
+        return redirect()->to('/clients')->with('success', 'Cliente restaurado com sucesso!');
     }
 }

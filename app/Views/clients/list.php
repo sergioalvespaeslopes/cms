@@ -1,5 +1,4 @@
 <?= $this->extend('layouts/base'); ?>
-
 <?= $this->section('css'); ?>
 <?= $this->endSection(); ?>
 

@@ -1,0 +1,166 @@
+ERROR - 2025-01-16 00:01:41 --> mysqli_sql_exception: Table 'cms_db.clientes' doesn't exist in C:\xampp\htdocs\cms\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\xampp\htdocs\cms\system\Database\MySQLi\Connection.php(312): mysqli->query('ALTER TABLE `cl...', 0)
+#1 C:\xampp\htdocs\cms\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('ALTER TABLE `cl...')
+#2 C:\xampp\htdocs\cms\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('ALTER TABLE `cl...')
+#3 C:\xampp\htdocs\cms\system\Database\Forge.php(799): CodeIgniter\Database\BaseConnection->query('ALTER TABLE `cl...')
+#4 C:\xampp\htdocs\cms\app\Database\Migrations\2025-01-15-214244_AddDeletedAtToClientes.php(23): CodeIgniter\Database\Forge->dropColumn('clientes', 'deleted_at')
+#5 C:\xampp\htdocs\cms\system\Database\MigrationRunner.php(867): App\Database\Migrations\AddDeletedAtToClientes->down()
+#6 C:\xampp\htdocs\cms\system\Database\MigrationRunner.php(290): CodeIgniter\Database\MigrationRunner->migrate('down', Object(stdClass))
+#7 C:\xampp\htdocs\cms\system\Commands\Database\MigrateRollback.php(101): CodeIgniter\Database\MigrationRunner->regress(6)
+#8 C:\xampp\htdocs\cms\system\CLI\Commands.php(70): CodeIgniter\Commands\Database\MigrateRollback->run(Array)
+#9 C:\xampp\htdocs\cms\system\CLI\Console.php(48): CodeIgniter\CLI\Commands->run('migrate:rollbac...', Array)
+#10 C:\xampp\htdocs\cms\system\Boot.php(351): CodeIgniter\CLI\Console->run()
+#11 C:\xampp\htdocs\cms\system\Boot.php(104): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+#12 C:\xampp\htdocs\cms\spark(84): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+#13 {main}
+ERROR - 2025-01-16 00:03:29 --> mysqli_sql_exception: Invalid default value for 'created_at' in C:\xampp\htdocs\cms\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\xampp\htdocs\cms\system\Database\MySQLi\Connection.php(312): mysqli->query('CREATE TABLE `c...', 0)
+#1 C:\xampp\htdocs\cms\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `c...')
+#2 C:\xampp\htdocs\cms\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `c...')
+#3 C:\xampp\htdocs\cms\system\Database\Forge.php(570): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `c...')
+#4 C:\xampp\htdocs\cms\app\Database\Migrations\2024-12-11-004213_CreateClientsTable.php(50): CodeIgniter\Database\Forge->createTable('clientes')
+#5 C:\xampp\htdocs\cms\system\Database\MigrationRunner.php(867): App\Database\Migrations\CreateClientesTable->up()
+#6 C:\xampp\htdocs\cms\system\Database\MigrationRunner.php(183): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 C:\xampp\htdocs\cms\system\Commands\Database\Migrate.php(85): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\xampp\htdocs\cms\system\CLI\Commands.php(70): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 C:\xampp\htdocs\cms\system\CLI\Console.php(48): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 C:\xampp\htdocs\cms\system\Boot.php(351): CodeIgniter\CLI\Console->run()
+#11 C:\xampp\htdocs\cms\system\Boot.php(104): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+#12 C:\xampp\htdocs\cms\spark(84): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+#13 {main}
+ERROR - 2025-01-16 00:03:30 --> mysqli_sql_exception: Table 'cms_db.clientes' doesn't exist in C:\xampp\htdocs\cms\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\xampp\htdocs\cms\system\Database\MySQLi\Connection.php(312): mysqli->query('ALTER TABLE `cl...', 0)
+#1 C:\xampp\htdocs\cms\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('ALTER TABLE `cl...')
+#2 C:\xampp\htdocs\cms\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('ALTER TABLE `cl...')
+#3 C:\xampp\htdocs\cms\system\Database\Forge.php(799): CodeIgniter\Database\BaseConnection->query('ALTER TABLE `cl...')
+#4 C:\xampp\htdocs\cms\app\Database\Migrations\2025-01-15-214244_AddDeletedAtToClientes.php(23): CodeIgniter\Database\Forge->dropColumn('clientes', 'deleted_at')
+#5 C:\xampp\htdocs\cms\system\Database\MigrationRunner.php(867): App\Database\Migrations\AddDeletedAtToClientes->down()
+#6 C:\xampp\htdocs\cms\system\Database\MigrationRunner.php(290): CodeIgniter\Database\MigrationRunner->migrate('down', Object(stdClass))
+#7 C:\xampp\htdocs\cms\system\Commands\Database\MigrateRollback.php(101): CodeIgniter\Database\MigrationRunner->regress(6)
+#8 C:\xampp\htdocs\cms\system\CLI\Commands.php(70): CodeIgniter\Commands\Database\MigrateRollback->run(Array)
+#9 C:\xampp\htdocs\cms\system\CLI\Console.php(48): CodeIgniter\CLI\Commands->run('migrate:rollbac...', Array)
+#10 C:\xampp\htdocs\cms\system\Boot.php(351): CodeIgniter\CLI\Console->run()
+#11 C:\xampp\htdocs\cms\system\Boot.php(104): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+#12 C:\xampp\htdocs\cms\spark(84): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+#13 {main}
+ERROR - 2025-01-16 00:03:32 --> mysqli_sql_exception: Invalid default value for 'created_at' in C:\xampp\htdocs\cms\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\xampp\htdocs\cms\system\Database\MySQLi\Connection.php(312): mysqli->query('CREATE TABLE `c...', 0)
+#1 C:\xampp\htdocs\cms\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `c...')
+#2 C:\xampp\htdocs\cms\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `c...')
+#3 C:\xampp\htdocs\cms\system\Database\Forge.php(570): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `c...')
+#4 C:\xampp\htdocs\cms\app\Database\Migrations\2024-12-11-004213_CreateClientsTable.php(50): CodeIgniter\Database\Forge->createTable('clientes')
+#5 C:\xampp\htdocs\cms\system\Database\MigrationRunner.php(867): App\Database\Migrations\CreateClientesTable->up()
+#6 C:\xampp\htdocs\cms\system\Database\MigrationRunner.php(183): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 C:\xampp\htdocs\cms\system\Commands\Database\Migrate.php(85): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\xampp\htdocs\cms\system\CLI\Commands.php(70): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 C:\xampp\htdocs\cms\system\CLI\Console.php(48): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 C:\xampp\htdocs\cms\system\Boot.php(351): CodeIgniter\CLI\Console->run()
+#11 C:\xampp\htdocs\cms\system\Boot.php(104): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+#12 C:\xampp\htdocs\cms\spark(84): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+#13 {main}
+INFO - 2025-01-16 00:03:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-01-16 00:03:36 --> mysqli_sql_exception: Table 'cms_db.clientes' doesn't exist in C:\xampp\htdocs\cms\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\xampp\htdocs\cms\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\cms\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\cms\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\cms\system\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\cms\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\cms\system\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\cms\app\Controllers\Clients.php(25): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\cms\system\CodeIgniter.php(933): App\Controllers\Clients->index()
+#8 C:\xampp\htdocs\cms\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Clients))
+#9 C:\xampp\htdocs\cms\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\cms\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\cms\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\xampp\htdocs\cms\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 C:\xampp\htdocs\cms\system\rewrite.php(44): require_once('C:\\xampp\\htdocs...')
+#14 {main}
+CRITICAL - 2025-01-16 00:03:36 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'cms_db.clientes' doesn't exist
+[Method: GET, Route: clients]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `clientes`
+WHERE `clientes`.`deleted_at` IS NULL', [], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Controllers\Clients.php(25): CodeIgniter\BaseModel->findAll()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Clients->index()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Clients))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\cms\\public\\index.php')
+CRITICAL - 2025-01-16 00:03:36 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'cms_db.clientes' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `clientes`
+WHERE `clientes`.`deleted_at` IS NULL')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `clientes`
+WHERE `clientes`.`deleted_at` IS NULL')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `clientes`
+WHERE `clientes`.`deleted_at` IS NULL', [], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Controllers\Clients.php(25): CodeIgniter\BaseModel->findAll()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Clients->index()
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Clients))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\cms\\public\\index.php')
+CRITICAL - 2025-01-16 00:03:36 --> [Caused by] mysqli_sql_exception: Table 'cms_db.clientes' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT *
+FROM `clientes`
+WHERE `clientes`.`deleted_at` IS NULL', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `clientes`
+WHERE `clientes`.`deleted_at` IS NULL')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `clientes`
+WHERE `clientes`.`deleted_at` IS NULL')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `clientes`
+WHERE `clientes`.`deleted_at` IS NULL', [], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\Clients.php(25): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Clients->index()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Clients))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\cms\\public\\index.php')
+ERROR - 2025-01-16 00:03:52 --> mysqli_sql_exception: Table 'cms_db.clientes' doesn't exist in C:\xampp\htdocs\cms\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\xampp\htdocs\cms\system\Database\MySQLi\Connection.php(312): mysqli->query('ALTER TABLE `cl...', 0)
+#1 C:\xampp\htdocs\cms\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('ALTER TABLE `cl...')
+#2 C:\xampp\htdocs\cms\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('ALTER TABLE `cl...')
+#3 C:\xampp\htdocs\cms\system\Database\Forge.php(799): CodeIgniter\Database\BaseConnection->query('ALTER TABLE `cl...')
+#4 C:\xampp\htdocs\cms\app\Database\Migrations\2025-01-15-214244_AddDeletedAtToClientes.php(23): CodeIgniter\Database\Forge->dropColumn('clientes', 'deleted_at')
+#5 C:\xampp\htdocs\cms\system\Database\MigrationRunner.php(867): App\Database\Migrations\AddDeletedAtToClientes->down()
+#6 C:\xampp\htdocs\cms\system\Database\MigrationRunner.php(290): CodeIgniter\Database\MigrationRunner->migrate('down', Object(stdClass))
+#7 C:\xampp\htdocs\cms\system\Commands\Database\MigrateRollback.php(101): CodeIgniter\Database\MigrationRunner->regress(6)
+#8 C:\xampp\htdocs\cms\system\CLI\Commands.php(70): CodeIgniter\Commands\Database\MigrateRollback->run(Array)
+#9 C:\xampp\htdocs\cms\system\CLI\Console.php(48): CodeIgniter\CLI\Commands->run('migrate:rollbac...', Array)
+#10 C:\xampp\htdocs\cms\system\Boot.php(351): CodeIgniter\CLI\Console->run()
+#11 C:\xampp\htdocs\cms\system\Boot.php(104): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+#12 C:\xampp\htdocs\cms\spark(84): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+#13 {main}
+INFO - 2025-01-16 00:05:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-16 00:05:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-16 00:06:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-16 00:06:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-16 00:06:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-16 00:06:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-01-16 00:06:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

@@ -1,9 +1,6 @@
 <?= $this->extend('layouts/base'); ?>
-
 <?= $this->section('css'); ?>
-<!-- Adiciona o estilo CSS caso necessário -->
 <?= $this->endSection(); ?>
-
 <?= $this->section('content'); ?>
 
 <div class="container mx-auto p-6">
@@ -31,7 +28,7 @@
     var distances = <?= json_encode($distances); ?>;
 
     var myChart = new Chart(ctx, {
-        type: 'line', // Alterar para 'line' para um gráfico de linha
+        type: 'line',
         data: {
             labels: segments,
             datasets: [{
@@ -40,7 +37,7 @@
                 backgroundColor: 'rgba(54, 162, 235, 0.2)',
                 borderColor: 'rgba(54, 162, 235, 1)',
                 borderWidth: 1,
-                fill: true // Preenchendo a área abaixo da linha
+                fill: true 
             }]
         },
         options: {
